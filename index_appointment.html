@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../resource/js/jquery.js"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <title></title>
+</head>
+<body>
+    <div></div>
+    <script>
+      $(document).ready(function() {
+        var user
+        liff.init({
+          liffId: '1657195754-XYqZ82dp'
+        })
+        .then(function() {
+          // alert('LIFF init');
+          if (!liff.isLoggedIn()) {
+            // liff.logout()
+            liff.login()
+          } 
+          const accessToken = liff.getAccessToken();
+          console.log("getAccessToken", accessToken);
+
+          liff.getProfile()
+          .then( data => {
+            user = data
+            window.location.href="/page_appointment/appointment_page.html"
+            console.log('data', data)
+          })
+          .catch(function(error) {
+            console.log('get profile error' , JSON.stringify(error));
+          });
+
+          // 關閉視窗 liff.closeWindow();
+  
+        }).catch(function(error) {
+          alert( 'init error', JSON.stringify(error));
+        });
+        
+      })
+    </script>
+
+</body>
+</html>

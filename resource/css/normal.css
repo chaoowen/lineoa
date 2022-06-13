@@ -1,0 +1,10 @@
+body {
+    position: absolute;
+    top: 15%;
+    left: 1rem;
+    right: 1rem;
+}
+
+img {
+    width: 85%;
+}

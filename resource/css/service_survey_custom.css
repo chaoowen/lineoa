@@ -1,0 +1,54 @@
+body {
+    position: absolute;
+    top:15%;
+    left: 2rem;
+    right: 2rem;
+}
+
+.level {
+    border-radius: 1rem;
+}
+
+.circle-border:hover, .circle {
+    width: 2rem;
+    height: 2rem;
+    background: no-repeat, #ed5975;
+    background-position: center, center;
+    padding-top: 0.15rem;
+    margin-right: 0.4rem;
+    border-radius: 50%
+}
+
+.circle-border {
+    width: 2rem;
+    height: 2rem;
+    padding-top: 0.15rem;
+    margin-right: 0.4rem;
+    border-radius: 50%;
+    border: 2px solid red;
+}
+
+.downside {
+    width: 45%;
+    background: no-repeat, #fcedeb;
+    background-position: center, center;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+}
+
+.downside:hover, .downside-border {
+    border: 1px solid rgb(224, 104, 104);
+}
+
+.textbox-area {
+    height: 10rem;
+    border-radius: 1rem;
+    background-color: #fcedeb;
+    text-align: left;
+}
+
+.free-text {
+    color: #f5bcc0;
+    opacity: 0.8;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../resource/js/jquery.js"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <title></title>
+</head>
+<body>
+    <div></div>
+    <script>
+      $(document).ready(function() {
+        var user
+        liff.init({
+          liffId: '1657203656-mBKPQ3pB'
+        })
+        .then(function() {
+          // alert('LIFF init');
+          if (!liff.isLoggedIn()) {
+            // liff.logout()
+            liff.login()
+          } 
+          const accessToken = liff.getAccessToken();
+          console.log("getAccessToken", accessToken);
+
+          liff.getProfile()
+          .then( data => {
+            user = data
+            const urlId = window.location.href.split('?id=')[1]
+            console.log('data', data)
+            console.log(urlId)
+
+            // 比對 url 跟 useId
+            if (user.userId !== urlId) {
+              alert('請本人至line開啟此連結填寫')
+              liff.closeWindow() 
+              if (firfox) {
+                const opened = window.open('about:blank', '_self')
+                opened.opener = null
+                opened.close()
+              } else {
+                window.opener = null
+                window.open('', '_self')
+                window.close()
+              }
+            } else {
+              window.location.href=`/page_service_survey/service_survey.html?id=${urlId}`
+            }
+          })
+          .catch(function(error) {
+            console.log('get profile error' , JSON.stringify(error));
+          });
+
+          // 關閉視窗 liff.closeWindow();
+  
+        }).catch(function(error) {
+          alert( 'init error', JSON.stringify(error));
+        });
+        
+      })
+    </script>Í
+</body>
+</html>

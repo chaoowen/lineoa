@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "lineoa api",
+    "description": "API for in the lineoa system"
+  },
+  "tags": [
+    {
+      "name": "lineoa",
+      "description": "API for in the lineoa system"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/sendMessage": {
+      "post": {
+        "tags": [
+          "lineoa"
+        ],
+        "summary": "send appointment information through line message to user",
+        "requestBody": {
+          "description": "userId: lineID, name: 姓名, time: 預約時間(格式範例:2020/01/01 11:00), type: 1=預約完成通知 2=預約提醒",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/appointmentInfo"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "line message sent",
+            "schema": {
+              "$ref": "#/definitions/appointmentInfo"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/sendSurvey": {
+      "post": {
+        "tags": [
+          "lineoa"
+        ],
+        "summary": "send survey url through line message to user",
+        "requestBody": {
+          "description": "userId: lineID, url: 問券網址",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/lineUserId"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "line message sent",
+            "schema": {
+              "$ref": "#/definitions/lineUserId"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "appointmentInfo": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "type": {
+          "type": "number"
+        }
+      }
+    },
+    "lineUserId" : {
+      "type": "object",
+      "properties" : {
+        "userId": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
