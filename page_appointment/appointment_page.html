@@ -129,9 +129,6 @@
           $.ajax({
             type: 'post',
             url: '/sendMessage',
-            // data: {
-            //   userId: 'U13c02a19f566c5ce1b78b1d62ac1b4a6'
-            // },
             data: {
               userId: user.userId,
               name: 'chaowen',
@@ -156,9 +153,6 @@
           $.ajax({
             type: 'post',
             url: '/sendMessage',
-            // data: {
-            //   userId: 'U13c02a19f566c5ce1b78b1d62ac1b4a6'
-            // },
             data: {
               userId: user.userId,
               name: 'chaowen',
@@ -184,9 +178,8 @@
             type: 'post',
             url: '/sendSurvey',
             data: {
-              // userId: user.userId,
-              userId: 'Ubf1df313c251bb385d940419bb',
-              url: 'https://241d-2402-7500-588-b930-cd8d-fec8-5af8-dd9.jp.ngrok.io/index_survey.html'
+              userId: user.userId,
+              url: 'https://sheltered-sea-24551.herokuapp.com/index_survey.html'
             },
             cache: false, 
             dataType: 'json',

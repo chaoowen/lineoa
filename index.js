@@ -81,13 +81,11 @@ app.post('/sendSurvey', express.json(), urlencodedParser, (req, res) => {
   console.log(JSON.parse(JSON.stringify(req.body)))
   const userId = req.body.userId
   const url = `${req.body.url}?id=${userId}`
-  // const url = `https://241d-2402-7500-588-b930-cd8d-fec8-5af8-dd9.jp.ngrok.io/index_survey.html?id=Uadf75929ab1684579b5643397ef96cce`
 
   const message = { 
     type: 'text', 
     text: `Please fill in service survey to let us know your experience. ${url}` 
   }
-  /* const message = { type: 'text', text: 'i am happy' }; */
   client.pushMessage(userId, message)
   .then(() => {
     console.log('done')
