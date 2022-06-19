@@ -25,7 +25,7 @@
         ],
         "summary": "send appointment information through line message to user",
         "requestBody": {
-          "description": "userId: lineID, name: 姓名, time: 預約時間(格式範例:2020/01/01 11:00), type: 1=預約完成通知 2=預約提醒",
+          "description": "userId: lineID, name: name, time: appointment(ex:2020/01/01 11:00), type: 1=appointment confirmation 2=appointment reminder",
           "required": true,
           "content": {
             "application/json": {
@@ -58,7 +58,7 @@
         ],
         "summary": "send survey url through line message to user",
         "requestBody": {
-          "description": "userId: lineID, url: 問券網址",
+          "description": "userId: lineID, url: survey url",
           "required": true,
           "content": {
             "application/json": {

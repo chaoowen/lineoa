@@ -112,15 +112,34 @@
           const accessToken = liff.getAccessToken();
           console.log("getAccessToken", accessToken);
 
-          liff.getProfile()
-          .then( data => {
-            user = data
-            console.log('data', data)
+          // 確認是否為好友
+          $.ajax({
+            type: 'get',
+            url: 'https://api.line.me/friendship/v1/status',
+            headers: {
+              'Authorization': `Bearer ${accessToken}`
+            },
+            cache: false, 
+            dataType: 'json',
+            success: function(res) {
+              if (res.friendFlag === true) {
+                liff.getProfile()
+                .then( data => {
+                  user = data
+                  console.log('data', data)
+                })
+              } else {
+                alert('please add friend first. line ID:@661myyvx')
+                window.location.href="/index_appointment.html"
+              }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              console.log(XMLHttpRequest.status);
+              console.log(XMLHttpRequest.readyState);
+              console.log(textStatus);
+            }
           })
-          .catch(function(error) {
-            console.log('get profile error' , JSON.stringify(error));
-          });
-  
+
         }).catch(function(error) {
           console.log( 'init error', JSON.stringify(error));
         });
