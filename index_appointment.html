@@ -25,15 +25,25 @@
           const accessToken = liff.getAccessToken();
           console.log("getAccessToken", accessToken);
 
-          liff.getProfile()
-          .then( data => {
-            user = data
-            window.location.href="/page_appointment/appointment_page.html"
-            console.log('data', data)
+          // 確認是否為好友
+          $.ajax({
+            type: 'get',
+            url: 'https://api.line.me/friendship/v1/status',
+            headers: {
+              'Authorization': `Bearer ${accessToken}`
+            },
+            cache: false, 
+            dataType: 'json',
+            success: function(data) {
+              console.log('success!!!!', data)
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status);
+            console.log(XMLHttpRequest.readyState);
+            console.log(textStatus);
+            }
           })
-          .catch(function(error) {
-            console.log('get profile error' , JSON.stringify(error));
-          });
+          // window.location.href="/page_appointment/appointment_page.html"
 
           // 關閉視窗 liff.closeWindow();
   
