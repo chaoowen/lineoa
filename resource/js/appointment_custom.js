@@ -108,7 +108,8 @@ var appointment = {
     timeConfig: {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
-        disableMobile:true
+        disableMobile:true,
+        allowInput:false
     }
 
 }
