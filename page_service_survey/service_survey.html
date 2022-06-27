@@ -19,12 +19,12 @@
             <div class="lead mb-3">How was your experience at the clinic today</div>
             <div class="lead mb-3"></div>
             <div class="selectlevel d-flex justify-content-center mb-3">
-                <div class="circle-border">1</div>
-                <div class="circle-border">2</div>
-                <div class="circle-border">3</div>
-                <div class="circle-border">4</div>
-                <div class="circle-border">5</div>
-                <div class="circle-border">6</div>
+                <div class="circle-border btn btn-top" name="btn-top" onclick="btntop(this)">1</div>
+                <div class="circle-border btn btn-top" name="btn-top" onclick="btntop(this)">2</div>
+                <div class="circle-border btn btn-top" name="btn-top" onclick="btntop(this)">3</div>
+                <div class="circle-border btn btn-top" name="btn-top" onclick="btntop(this)">4</div>
+                <div class="circle-border btn btn-top" name="btn-top" onclick="btntop(this)">5</div>
+                <div class="circle-border btn btn-top" name="btn-top" onclick="btntop(this)">6</div>
             </div>
         </div>
         <div class="downside-block row justify-content-center mt-4">
@@ -48,7 +48,22 @@
         </div>
     </div>
 
-    <script>
+<script>
+$(".downside").click(
+  function(){   
+    $(this).toggleClass("downsideborder");
+  }
+);
+
+function btntop(obj){
+  $("div[name='btn-top']").removeClass("background");
+  $(obj).toggleClass("background");
+}
+
+
+</script>
+
+    <!-- <script>
       $(document).ready(function () {
         var user
         liff.init({
@@ -84,6 +99,6 @@
             console.log('init error', JSON.stringify(error));
           });
       })
-    </script>
+    </script> -->
 </body>
 </html>
