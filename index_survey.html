@@ -27,27 +27,25 @@
 
           liff.getProfile()
           .then( data => {
-            user = data
-            const urlId = window.location.href.split('?id=')[1]
-            console.log('data', data)
-            console.log(urlId)
+            // user = data
+            // const urlId = window.location.href.split('?id=')[1]
 
-            // 比對 url 跟 useId
-            if (user.userId !== urlId) {
-              alert('請本人至line開啟此連結填寫')
-              liff.closeWindow() 
-              if (firfox) {
-                const opened = window.open('about:blank', '_self')
-                opened.opener = null
-                opened.close()
-              } else {
-                window.opener = null
-                window.open('', '_self')
-                window.close()
-              }
-            } else {
+            // // 比對 url 跟 useId
+            // if (user.userId !== urlId) {
+            //   alert('請本人至line開啟此連結填寫')
+            //   liff.closeWindow() 
+            //   if (firfox) {
+            //     const opened = window.open('about:blank', '_self')
+            //     opened.opener = null
+            //     opened.close()
+            //   } else {
+            //     window.opener = null
+            //     window.open('', '_self')
+            //     window.close()
+            //   }
+            // } else {
               window.location.href=`/page_service_survey/service_survey.html?id=${urlId}`
-            }
+            // }
           })
           .catch(function(error) {
             console.log('get profile error' , JSON.stringify(error));

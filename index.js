@@ -80,7 +80,8 @@ app.post('/sendMessage', express.json(), urlencodedParser, (req, res) => {
 app.post('/sendSurvey', express.json(), urlencodedParser, (req, res) => {
   console.log(JSON.parse(JSON.stringify(req.body)))
   const userId = req.body.userId
-  const url = `${req.body.url}?id=${userId}`
+  // const url = `${req.body.url}?id=${userId}`
+  const url = req.body.url
 
   const message = { 
     type: 'text', 
