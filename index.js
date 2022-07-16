@@ -1,6 +1,7 @@
 const line = require('@line/bot-sdk')
 const express = require('express')
 const cors = require('cors')
+require('dotenv').config()
 
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -21,9 +22,9 @@ const swaggerDocument = require('./swagger.json')
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 const config = {
-  channelId: '1657195750',
-  channelAccessToken: '8e+46rqxIcPyu+FtQvxCJRGKqyf2DIBtNCClvEn3382OJFXxz/VecuQTgNGuI+5wiJsiwy2u8K4OmYBmas9+ifiolbA8tF+HeQ1yn5TOu7CV8yO8WklrhXaulj6sXDlx/W/SsJ2JWeV5+eFTm/9M6QdB04t89/1O/w1cDnyilFU=',
-  channelSecret: '5b3f795e87f74946937b15c306c2cdb0'
+  channelId: process.env.channelId,
+  channelAccessToken: process.env.channelAccessToken,
+  channelSecret: process.env.channelSecret
 };
 // create LINE SDK client
 const client = new line.Client(config)
@@ -31,7 +32,7 @@ const client = new line.Client(config)
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
-	// console.log(req, res)
+	console.log('go in callback')
   Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
