@@ -29,31 +29,6 @@ const config = {
 // create LINE SDK client
 const client = new line.Client(config)
 
-// register a webhook handler with middleware
-// about the middleware, please refer to doc
-app.post('/callback', line.middleware(config), (req, res) => {
-	console.log('go in callback')
-  Promise
-    .all(req.body.events.map(handleEvent))
-    .then((result) => res.json(result))
-    .catch((err) => {
-      console.error(err);
-      res.status(500).end();
-    });
-});
-// event handler
-function handleEvent(event) {
-  console.log('event.replyToken', event.replyToken)
-  if (event.type !== 'message' || event.message.type !== 'text') {
-    // ignore non-text-message event
-    return Promise.resolve(null);
-  }
-  // create a echoing text message
-  const echo = { type: 'text', text: event.message.text };
-  // use reply API
-  return client.replyMessage(event.replyToken, echo);
-}
-
 // 發訊息
 app.post('/sendMessage', express.json(), urlencodedParser, (req, res) => {
   console.log(JSON.parse(JSON.stringify(req.body)))
@@ -79,9 +54,7 @@ app.post('/sendMessage', express.json(), urlencodedParser, (req, res) => {
 
 // 發問卷
 app.post('/sendSurvey', express.json(), urlencodedParser, (req, res) => {
-  console.log(JSON.parse(JSON.stringify(req.body)))
   const userId = req.body.userId
-  // const url = `${req.body.url}?id=${userId}`
   const url = req.body.url
 
   const message = { 
